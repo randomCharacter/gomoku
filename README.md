@@ -8,3 +8,8 @@ Klijent se pokreće upotrebom komande `make client` nakon čega će se kreirati 
 Pre pokretanja `make` komande moguće je promeniti podešavanja, izmenom fajla `src/config.txt`.  
 Ovde se nalaze podaci o lokaciji servera, ali i o grafičkom izgledu klijent aplikacije.  
 Moguće je igrati više mečeva istovremeno
+
+## Autori
+[Igor Ilić](http://github.com/dexters1)  
+[Kosta Svrdlan](http://github.com/goust6)  
+[Mario Perić](http://github.com/randomCharacter)
