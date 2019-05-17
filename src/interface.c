@@ -17,6 +17,51 @@
     ********************************************************************
 */
 #include "interface.h"
+#include "nunchuk.h"
+
+char getKey()
+{
+    FILE *f;
+    if ((f = fopen(DEVICE_NAME, "rb")) == NULL)
+    {
+        printf("fopen failed.\n");
+        return -1;
+    }
+
+    nunchuk n;
+
+    if (fread(&n, sizeof(nunchuk), 1, f) <= 0) {
+        exit(1);
+    }
+
+    fclose(f);
+
+    if (n.c)
+    {
+        return 'q';
+    }
+    if (n.z)
+    {
+        return 'y';
+    }
+    if (n.x < 10)
+    {
+        return 'a';
+    }
+    if (n.x > 240)
+    {
+        return 'd';
+    }
+    if (n.y < 10)
+    {
+        return 's';
+    }
+    if (n.y > 240)
+    {
+        return 'w';
+    }
+    return ' ';
+}
 
 void clearScreen()
 {
@@ -179,10 +224,10 @@ Move showInterface(Table t, int player, char *user1, char *user2)
     {
         draw(t, x, y, user1, user2);
 
-        playerIn = getch();
+        playerIn = getKey();
         switch (playerIn)
         {
-        case 10:
+        case 'q':
             if (!pressed)
             {
                 pressed = 1;
@@ -194,7 +239,7 @@ Move showInterface(Table t, int player, char *user1, char *user2)
                 return m;
             }
             break;
-        case 65:
+        case 'w':
             // key up
             if (x > 0)
             {
@@ -202,7 +247,7 @@ Move showInterface(Table t, int player, char *user1, char *user2)
                 break;
             }
             break;
-        case 66:
+        case 's':
             // key down
             if (x < HEIGHT - 1)
             {
@@ -210,7 +255,7 @@ Move showInterface(Table t, int player, char *user1, char *user2)
                 break;
             }
             break;
-        case 67:
+        case 'd':
             // key right
             if (y < WIDTH - 1)
             {
@@ -218,7 +263,7 @@ Move showInterface(Table t, int player, char *user1, char *user2)
                 break;
             }
             break;
-        case 68:
+        case 'a':
             // key left
             if (y > 0)
             {

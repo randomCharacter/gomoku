@@ -1,5 +1,8 @@
 # Gomoku
 Projekat iz predmeta ORM1
+```
+Verzija napravljena za testiranje nunchuk modula
+```
 
 ## Kratko uputstvo
 Server se pokreće upotrebom komande `make server`, nakon čeka će se kreirati fajl `bin/server` koji je potrebno pokrenuti  
